@@ -1,15 +1,21 @@
-sides = [3, 2, 4, 7, 5, 12, 11, 13, 15, 16, 14, 14]
-sides = sorted(sides, reverse=True)
-smax = 0
-for i in range(len(sides)):
-    for j in range(i + 1, len(sides)):
-       for k in range(j + 1, len(sides)):
-           a = sides[i]
-           b = sides[j]
-           c = sides[k]
-           if a + b > c and a + c > b and b + c > a:
-               p = (a + b + c)
-               s = (p * (p - a)*(p - b)*(p - c)) ** (1/2)
-               if s > smax:
-                   smax = s
-print("Ploshad treug", smax)
+from math import sqrt
+
+# Решаем над полем действительных чисел
+print('Введите коэффициенты квадратного уранения вида ax^2+bx+c:')
+
+a = float(input('Введите a: '))
+b = float(input('Введите b: '))
+c = float(input('Введите c: '))
+
+discriminant = b ** 2 - 4 * a * c
+print('D = {}'.format(discriminant))
+
+if discriminant >= 0:
+    x1 = -b + sqrt(discriminant) / (2 * a)
+    x2 = -b - sqrt(discriminant) / (2 * a)
+    if x1 != x2:
+        print('Корень х1 = {x1}\nКорень х2 = {x2}'.format(x1=x1, x2=x2))
+    else:
+        print('Корень х0 = {}'.format(x1))
+else:
+    print('В действительном поле корней нет')
